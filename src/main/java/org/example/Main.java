@@ -12,6 +12,7 @@ import org.example.model.Client;
 import org.example.model.Planet;
 import org.example.service.ClientCrudServiceImpl;
 import org.example.service.PlanetCrudServiceImpl;
+import org.flywaydb.core.Flyway;
 
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +22,10 @@ import java.util.Set;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+        Flyway flyway = Flyway.configure()
+                .dataSource("jdbc:mysql://localhost:3306/jdbc_hiber", "root", "asdfgh665599")
+                .load();
+        flyway.migrate();
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();

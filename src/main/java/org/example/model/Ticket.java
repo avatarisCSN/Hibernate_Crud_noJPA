@@ -34,6 +34,15 @@ public class Ticket {
     @JoinColumn(name = "to_planet_id", nullable = false)
     private Planet toPlanet;
 
+    public Ticket() {
+
+    }
+    public Ticket(Client client, Planet fromPlanet, Planet toPlanet) {
+        this.client = client;
+        this.fromPlanet = fromPlanet;
+        this.toPlanet = toPlanet;
+    }
+
     public Long getId() {
         return id;
     }
@@ -69,6 +78,7 @@ public class Ticket {
     public Instant getCreatedAt() {
         return createdAt;
     }
+
 
     @Override
     public boolean equals(Object o) {

@@ -4,7 +4,7 @@ CREATE TABLE Client (
 );
 
 CREATE TABLE Planet (
-                        id VARCHAR(100) PRIMARY KEY NOT NULL CHECK (code REGEXP '^[A-Z0-9]+$') ,
+                        id VARCHAR(100) PRIMARY KEY NOT NULL CHECK (id REGEXP '^[A-Z0-9]+$') ,
                         name VARCHAR(500) NOT NULL CHECK (LENGTH(name) >= 1)
 );
 
