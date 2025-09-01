@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Драйвер БД -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+        <!-- URL до базы -->
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/jdbc_hiber?useSSL=false&amp;serverTimezone=UTC</property>
+
+        <!-- Логин / пароль -->
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">asdfgh665599</property>
+
+        <!-- Диалект Hibernate (зависит от БД) -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <!-- Автогенерация схемы (create / update / validate / none) -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Логирование SQL в консоль -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Регистрируем наши сущности -->
+        <mapping class="org.example.model.Client"/>
+        <mapping class="org.example.model.Planet"/>
+        <mapping class="org.example.model.Ticket"/>
+        <!-- если пакетов несколько, то писать полный путь:
+        <mapping class="com.example.entity.User"/>
+        -->
+
+    </session-factory>
+</hibernate-configuration>
