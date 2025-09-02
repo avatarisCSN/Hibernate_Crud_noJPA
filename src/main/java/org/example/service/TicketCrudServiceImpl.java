@@ -4,6 +4,8 @@ import org.example.dao.ClientDaoService;
 import org.example.dao.PlanetDaoService;
 import org.example.dao.TicketDaoService;
 
+import org.example.model.Client;
+import org.example.model.Planet;
 import org.example.model.Ticket;
 
 public class TicketCrudServiceImpl {
@@ -17,23 +19,26 @@ public class TicketCrudServiceImpl {
         this.clientDao = clientDao;
     }
 
-    public boolean validateTicket (Ticket ticket) {
-        if (ticket.getClient() == null || ticket.getToPlanet() == null || ticket.getFromPlanet() == null) {
-            return false;
-        } else if
-              ( clientDao.findById(ticket.getClient().getId()).equals(ticket.getClient()) &&
-                planetDao.findById(ticket.getFromPlanet().getId()).equals(ticket.getFromPlanet()) &&
-                planetDao.findById(ticket.getToPlanet().getId()).equals(ticket.getToPlanet())  ) {
-         return true;
-        } else  {
-            return false;
+    public void validateTicket (Ticket ticket) {
+        if (clientDao.findById(ticket.getClient().getId()) == null) {
+            throw new IllegalArgumentException("Client with id does not exist");
         }
+
+        if (planetDao.findById(ticket.getFromPlanet().getId()) == null) {
+            throw new IllegalArgumentException("From planet not exist");
+        }
+
+        if (planetDao.findById(ticket.getToPlanet().getId()) == null) {
+            throw new IllegalArgumentException("To planet not exist");
+        }
+
     };
 
     public void saveTicket(Ticket ticket) {
-        if (validateTicket(ticket)) {
+        validateTicket(ticket);
             ticketDao.save(ticket);
-        }
+            System.out.println("TICKET IS SAVED");
+
     };
 
 
@@ -42,9 +47,9 @@ public class TicketCrudServiceImpl {
     }
 
     public void updateTicket(Ticket ticket) {
-        if (validateTicket(ticket)) {
+        validateTicket(ticket);
+            System.out.println("TICKET IS UPDATED");
             ticketDao.update(ticket);
-        }
     }
 
     public void deleteTicket(Ticket ticket) {

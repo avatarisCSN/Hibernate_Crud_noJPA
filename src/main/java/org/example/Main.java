@@ -36,7 +36,6 @@ public class Main {
         Planet planet3 = new Planet("VENUS3", "VEnerina muholovka");
 
 
-
         List<Planet> planets = List.of(planet, planet2, planet3);
         Set<ConstraintViolation<Planet>> allViolations = new HashSet<>();
 
@@ -65,7 +64,7 @@ public class Main {
         ClientDaoService clientDao = new ClientDaoImpl();
         ClientCrudServiceImpl clientCrudService = new ClientCrudServiceImpl(clientDao);
 
-        Client client = new Client( "Alice");
+        Client client = new Client("Alice");
         clientCrudService.saveClient(client);
         System.out.println(clientCrudService.findClientById(1L));
 
@@ -74,11 +73,6 @@ public class Main {
         clientCrudService.updateClient(existingClient2);
 
         clientCrudService.deleteClient(client);
-
-
-
-
-
 
 
     }

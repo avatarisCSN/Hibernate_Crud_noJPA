@@ -54,8 +54,8 @@ public class Client {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Client client = (Client) o;
-        return Objects.equals(id, client.id) && Objects.equals(name, client.name) && Objects.equals(tickets, client.tickets);
+        Client second = (Client) o;
+        return Objects.equals(id, second.id) && Objects.equals(name, second.name) && Objects.equals(tickets, second.tickets);
     }
 
     @Override

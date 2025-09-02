@@ -38,6 +38,9 @@ public class Ticket {
 
     }
     public Ticket(Client client, Planet fromPlanet, Planet toPlanet) {
+        if (client.getId() == null || fromPlanet.getId() == null || toPlanet.getId() == null) {
+            throw new IllegalArgumentException("Client and planets must not be null");
+        }
         this.client = client;
         this.fromPlanet = fromPlanet;
         this.toPlanet = toPlanet;
